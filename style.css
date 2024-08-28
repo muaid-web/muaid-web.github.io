@@ -253,6 +253,10 @@ li{
     box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.884);
     background-repeat: no-repeat;
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 23px;
+    grid-row-gap: 50px;
 }
 .massage h1{
     color: #db3028;
