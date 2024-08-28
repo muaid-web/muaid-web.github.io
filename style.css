@@ -208,7 +208,7 @@ li{
 }
 .news{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .nws{
     width: 25%;
