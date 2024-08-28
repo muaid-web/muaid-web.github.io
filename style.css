@@ -223,8 +223,10 @@ li{
     overflow: hidden;
     border-radius: 10px;
     width: fit-content;
+    gap: 20px;
   }
   .gallery > img {
+    padding-right: 20px;
     grid-area: 1/1;
     height: 640px;
     width: 452px;
