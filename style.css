@@ -256,7 +256,6 @@ li{
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 23px;
-    grid-row-gap: 50px;
 }
 .massage h1{
     color: #db3028;
