@@ -209,9 +209,13 @@ li{
 .news{
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    justify-items: center;
 }
 .nws{
     width: 25%;
+    align-items: center;
+    justify-items: center;
 }
 .nws-nws h4{
     margin: 0;
