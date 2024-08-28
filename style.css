@@ -16,15 +16,16 @@ body{
     grid-column-gap: 60px;
     align-items: center;
     justify-items: center;
+    justify-content: space-around;
 }
 .frst i{
-    font-size: 30px;
+    font-size: 20px;
     margin-right: 10px;
 }
 .frst a{
     text-decoration: none;
     color: #000000;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 header{
@@ -50,6 +51,7 @@ ul img{
     right: auto;
     border: #ffffff solid 3px;
     border-radius: 50%;
+    background-color: #fff;
 }
 li{
     padding-top: 10px;
@@ -61,6 +63,17 @@ li{
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
+}
+.expandable {
+    display: none;
+}
+.expandable.active {
+    display: inline-block;
+    width: fit-content;
+}
+.expandable a {
+    display: block; /* Display the links as blocks */
+    margin-bottom: 10px; /* Add some spacing between the links */
 }
 
 
@@ -81,7 +94,8 @@ li{
     /* Styling for the image inside each slide */
     .slide img {
         width: 100%;
-        
+        object-position: center;
+        object-fit: cover;
     }
 
     /* Styling for the text and button inside each slide */
@@ -193,38 +207,39 @@ li{
     font-weight: bold;
 }
 .news{
-    display: block;
-    padding-top: 20px;
-    padding-bottom: 20px;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-between;
 }
 .nws{
-    background-color: #db3028;
-    width: 30%;
+    width: 25%;
+}
+.nws-nws h4{
+    margin: 0;
+}
+.gallery  {
+    --d: 120s; /* duration */
+    
+    display: grid;
+    overflow: hidden;
     border-radius: 10px;
-}
-
-.nws img{
-    border-radius: 10px 11px 0px 0px;
-    width: 100%;
-}
-.nws h3{
-    color: #ffffff;
-    font-weight: bold;
-    padding-right: 10px;
-}
-.nws p{
-    color: #ffffff;
-    font-weight: bold;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.nws a{
-    text-decoration: none;
-    color: #ffffff;
-}
+    width: fit-content;
+  }
+  .gallery > img {
+    grid-area: 1/1;
+    height: 640px;
+    width: 452px;
+    aspect-ratio: 0.5;
+    object-fit: cover;
+    animation: r var(--d) linear infinite;
+  }
+  .gallery > img:nth-child(2) {animation-delay: calc(1*var(--d)/-4)}
+  .gallery > img:nth-child(3) {animation-delay: calc(2*var(--d)/-4)}
+  .gallery > img:nth-child(4) {animation-delay: calc(3*var(--d)/-4)}
+  
+  @keyframes r {
+    75%    {transform: translate(-300%)}
+    75.01% {transform: translate( 100%)}
+  }
 .massage{
     background-image: url(images/robina-weermeijer-z8_-Fmfz06c-unsplash.jpg);
     background-position: center;
@@ -232,9 +247,6 @@ li{
     box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.884);
     background-repeat: no-repeat;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 50px;
 }
 .massage h1{
     color: #db3028;
@@ -259,7 +271,7 @@ li{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
-    height: 740px;
+    height: 840px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -267,6 +279,10 @@ li{
     margin-bottom: 20px;
     text-align: center;
     font-size: 40px;
+}
+.clinic-select{
+    padding: 20px;
+    border: #db3028 10px solid;
 }
 .form-group {
     width: 100%;
@@ -332,6 +348,9 @@ li{
 }
 .form-group .radio-group input[type="radio"] {
     margin-right: 5px;
+    width: 100%;
+    height: 2em;
+    background-color: #db3028;
 }
 .form-group .radio-group input[type="radio"]:checked {
     background-color: #db3028;
@@ -371,7 +390,7 @@ li{
     color: #db3028;
   }
   .tabs .tab {
-    order: 99; // Put the tabs last
+    order: 99;
     flex-grow: 1;
     width: 100%;
     display: none;
