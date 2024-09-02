@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Sondos Taiba | الوظايف</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="frst" dir="ltr">
+        <div>
+            <i class="fab fa-instagram" style="color: #db3028;"></i>
+            <a href="https://www.instagram.com/sondos_taiba/">sondos_taiba</a>
+        </div>
+        <div>
+            <span><i class="fas fa-phone fa-flip-horizontal" style="color: #db3028;"></i></span>
+            <a type="phone" href="tel:+966546263768">+966 54 626 3768</a>
+        </div>
+        <div>
+            <i class="fas fa-map-marker-alt" style="color: #db3028;"></i>
+            <a href="#map"> المدينة المنورة - مخطط وعيرة خلف محطة الفليحي </a>
+        </div>
+    </div>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><img src="images/logo.png"></li>
+                <li><a href="">الصفحة الرئسية</a></li>
+                <li><a href="">العيادات</a></li>
+                <li><a href="">الأطباء</a></li>
+                <li><a href="">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="form" id="form">
+        <div class="form-container">
+            <h2>الوظايف</h2>
+            <form action="/submit_appointment" method="post">
+                <div class="form-group">
+                    <div class="half-width">
+                        <label for="first_name">الاسم الأول:</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="أدخل اسمك الأول" required>
+                    </div>
+                    <div class="half-width">
+                        <label for="last_name">اللقب:</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="أدخل اسمك الأخير" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="half-width">
+                        <label for="email">البريد الإلكتروني:</label>
+                        <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                    <div class="half-width">
+                        <label for="phone">رقم الهاتف:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+                    </div>
+                </div>
+                <div class="half-width">
+                    <label for="resume">تحميل بطاقه الاعاقه او التقرير الطبي</label>
+                    <input type="file" id="resume" name="resume" placeholder="السيره الذاتيه" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الخدمه المطلوبه :</label>
+                    <textarea id="message" name="message" rows="1" placeholder="أدخل رسالتك" required ></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">إرسال</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="locations">
+            <h2>العنوان</h2>
+            <p>المدينة المنورة - مخطط وعيرة<br> خلف محطة الفليحي</p>
+        </div>
+        <div class="useful-links">
+            <h2>روابط تهمك</h2>
+            <ul>
+                <ul>
+                    <li><a href="">الصفحة الرئسية</a></li>
+                    <li><a href="https://www.moh.gov.sa/Pages/default.aspx">وزارة الصحة</a></li>
+                    <li><a href="https://www.srca.org.sa/">هئية الهلال الأحمر السعودي</a></li>
+                    <li><a href="https://www.sfda.gov.sa/">الهئية العامة للغذاء و الدواء</a></li>
+                    <li><a href="https://www.chi.gov.sa/Pages/default.aspx">مجلس الضمان الصحي</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="useful-links">
+            <h2>خدمات سندس طيبه</h2>
+            <ul>
+                <ul>
+                    <li><a href="c&s.html">الشكاوي والاقتراحات</a></li>
+                    <li><a href="career form.html">الوظايف</a></li>
+                    <li><a href="dis.html">خدمه ذوي الاحتياجات الخاصه</a></li>
+                    <li><a href="shohadaa form.html">خدمه اسر شهداء الواجب</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="contact">
+            <h2>تواصل معنا</h2>
+            <a type="email" href="mailto:amgadtaiba11@hotmail.com">amgadtaiba11@hotmail.com<br></a>
+            <a dir="ltr" type="phone" href="tel:+966546263768">+966 54 626 3768</a>
+        </div>
+    </footer>
+</body>
+</html>

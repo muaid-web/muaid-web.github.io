@@ -32,21 +32,11 @@
                 <li><a href="">الصفحة الرئسية</a></li>
                 <li><a href="">العيادات</a></li>
                 <li><a href="">الأطباء</a></li>
-                <li><a href="">من نحن</a></li>
                 <li><a href="">تواصل معنا</a></li>
             </ul>
         </nav>
     </header>
     <div class="slider-container">
-        <div class="slide">
-            <img src="images/afif-ramdhasuma-6XT5TpooP0g-unsplash.jpg" alt="Image 1">
-            <div class="slide-content">
-                <h1>رسالتنا</h1>
-                <p>ذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p>
-                <h1>أهدافنا</h1>
-                <p>تقديم رعايه صحيه متكامله وفق المنظومات الصحيه العاليه</p>
-            </div>
-        </div>
         <div class="slide">
             <img src="images/ekrem-osmanoglu-yzKz9iOjP60-unsplash.jpg" alt="Image 2">
             <div class="slide-content">
@@ -142,7 +132,7 @@
         <p>تقديم رعايه صحيه متكامله وفق المنظومات الصحيه العاليه</p>
         <p>تحقيق منظومه صحيه متكامله مستدامه يعني بالصحه مع تعزيز الوقايه وتوفير الرعايه الصحيه المتكامله وفق أحدث المنظومات الصحيه</p>
     </section>
-    <section class="form" id="form1">
+    <section class="form" id="form">
         <div class="form-container">
             <h2>حجز موعد</h2>
             <form action="/submit_appointment" method="post">
@@ -214,127 +204,6 @@
             </form>
         </div>
     </section>
-    <section class="form" id="form">
-        <div class="form-container">
-            <h2>الشكاوي والاقتراحات</h2>
-            <form action="/submit_appointment" method="post">
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="first_name">الاسم الأول:</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="أدخل اسمك الأول" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="last_name">اللقب:</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="أدخل اسمك الأخير" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="email">البريد الإلكتروني:</label>
-                        <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="phone">رقم الهاتف:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">أكتب هنا :</label>
-                    <textarea id="message" name="message" rows="5" placeholder="أدخل رسالتك" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">إرسال</button>
-                </div>
-            </form>
-        </div>
-    </section>
-    <section class="form" id="form1">
-        <div class="form-container">
-            <h2>خدمه اسر شهداء</h2>
-            <form action="/submit_appointment" method="post">
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="first_name">الاسم الأول:</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="أدخل اسمك الأول" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="last_name">اللقب:</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="أدخل اسمك الأخير" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="email">البريد الإلكتروني:</label>
-                        <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="phone">رقم الهاتف:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">الخدمه المطلوبه :</label>
-                    <textarea id="message" name="message" rows="1" placeholder="أدخل رسالتك" required ></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">إرسال</button>
-                </div>
-            </form>
-        </div>
-    </section>
-    <section class="form" id="form">
-        <div class="form-container">
-            <h2>الوظايف</h2>
-            <form action="/submit_appointment" method="post">
-                <div class="clinic-select">
-                    <div class="form-group">
-                        <label for="clinic">اختر الوظيفة:</label>
-                        <div class="radio-group">
-                            <label>
-                                <input type="radio" name="clinic" value="mediclinic" required> الوظيفة 1
-                            </label>
-                            <label>
-                                <input type="radio" name="clinic" value="mediclinic" required> الوظيفة 2
-                            </label>
-                            <label>
-                                <input type="radio" name="clinic" value="mediclinic" required> الوظيفة 3
-                            </label>
-                            <label>
-                                <input type="radio" name="clinic" value="mediclinic" required> الوظيفة 4
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="first_name">الاسم الأول:</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="أدخل اسمك الأول" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="last_name">اللقب:</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="أدخل اسمك الأخير" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="half-width">
-                        <label for="email">البريد الإلكتروني:</label>
-                        <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="phone">رقم الهاتف:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
-                    </div>
-                </div>
-                <div class="half-width">
-                    <label for="resume">تحميل السيره الذاتيه</label>
-                    <input type="file" id="resume" name="resume" placeholder="السيره الذاتيه" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">إرسال</button>
-                </div>
-            </form>
-        </div>
-    </section>
     <section>
         <h4>نظرة عامة</h4>
         <div class="tabs">
@@ -352,14 +221,13 @@
             <input type="radio" name="tabs" id="tabtwo">
             <label for="tabtwo">العيادات</label>
             <div class="tab">
-            <h1>عنوان المحتوى</h1>
-            <p>2</p>
-            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
-                إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.</p>
-            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
-                إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.</p>
+                <div class="tabtwo-content">
+                <h1>أستشاري دكتور تركي صالح قاسم<br> (النساء و الولادة)</h1>
+                <h1>أخصائي دكتور أحمد عبد المنعك<br> (عيادة الأطفال)</h1>
+                <h1>أخصائي أحمد الفزاى <br>(عيادةالجراحة العامة)</h1>
+                <h1>دكتورة فاطمة عبد الرحمن<br> (طب الأسرة)</h1>
+                </div>
             </div>
-            
             <input type="radio" name="tabs" id="tabthree">
             <label for="tabthree">أبرز الخدمات</label>
             <div class="tab">
@@ -397,10 +265,10 @@
             <h2>خدمات سندس طيبه</h2>
             <ul>
                 <ul>
-                    <li><a href="">الشكاوي والاقتراحات</a></li>
-                    <li><a href="">الوظايف</a></li>
-                    <li><a href="">خدمه ذوي الاحتياجات الخاصه</a></li>
-                    <li><a href="">خدمه اسر شهداء الواجب</a></li>
+                    <li><a href="c&s.html">الشكاوي والاقتراحات</a></li>
+                    <li><a href="career form.html">الوظايف</a></li>
+                    <li><a href="dis.html">خدمه ذوي الاحتياجات الخاصه</a></li>
+                    <li><a href="shohadaa form.html">خدمه اسر شهداء الواجب</a></li>
                 </ul>
             </ul>
         </div>
