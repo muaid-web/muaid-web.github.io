@@ -381,6 +381,7 @@ li{
     padding: 2%;
     border: #db3028 solid 3px;
     border-radius: 10px;
+    height: max-content;
   }
   .tabs label {
     font-size: 26px;
@@ -401,53 +402,67 @@ li{
   h1{
     color: #db3028;
   }
-  .tabs .tab {
+  .tab {
     order: 99;
     flex-grow: 1;
     width: 50%;
     display: none;
     padding: 1rem;
     background: #fff;
+    height: max-content;
     
   }
   .tabtwo-content h1{
     color: #ffffff  ;
     background-color: #00000073;
-    
+    text-align: center;
+    margin: auto;
+    height: 100%;
+    justify-items: center;
+    align-content: center;
+  }
+  .tabtwo-content h1:hover{
+    background-color: #000000e1;
   }
   .tabtwo-content{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 33px;
+    display: flex;
+    flex-direction: column;
     height: 90%;
-    justify-content: center;
-    text-align: center;
   }
   .tabtwo-content1{
     background-image: url(https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
     background-size: cover;
+    height: 250px;
+    margin: 2%;
   }
   .tabtwo-content2{
     background-image: url(https://images.unsplash.com/photo-1534982841079-afde227ada8f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
     background-size: cover;
+    height: 250px;
+    margin: 1%;
   }
   .tabtwo-content3{
     background-image: url(https://images.unsplash.com/photo-1551601651-05a4836d25c2?q=80&w=1507&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
     background-size: cover;
+    height: 250px;
+    margin: 1%;
   }
   .tabtwo-content4{
     background-image: url(https://images.unsplash.com/photo-1561525140-c2a4cc68e4bd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
     background-size: cover;
+    height: 250px;
+    margin: 1%;
   }
   .tabtwo-content5{
     background-image: url(https://images.unsplash.com/photo-1670250492416-570b5b7343b1?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-position: center;
     background-size: cover;
+    height: 250px;
+    margin: 1%;
   }
   .tabs input[type="radio"] {
     display: none;
@@ -459,9 +474,9 @@ li{
   }
   .tabs input[type="radio"]:checked + label + .tab {
     display: block;
-    height: 350px;
     background-color: #ffffffc7;
     border-radius: 10px;
+    height: fit-content;
   }
 footer{
     display: grid;
