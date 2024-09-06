@@ -266,6 +266,41 @@ li{
     margin-right: 50px;
     font-size: 20px;
 }
+
+.info {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 30px;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.more {
+    display: none;
+}
+.info h4{
+    font-size: 25px;
+}
+.info p{
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+.info a{
+    text-decoration: none;
+    background-color: #db3028;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.info-sec{
+    border: #db3028 solid 3px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
 .form{
     background-color: #db3028;
     display: flex;
