@@ -311,7 +311,21 @@ margin-bottom: 10px;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.527);
     background-position: center;
     background-size: cover;
+    transition: 0.7s;
     background-image: url(https://images.unsplash.com/photo-1587569862806-804104bb47f6?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+.info-sec:hover{
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.692);
+    color: #db3028;
+    transition: 0.7s;
+    p{
+        color: #db3028;
+        transition: 0.7s;
+    }
+    h4{
+        color: #db3028;
+        transition: 0.7s;
+    }
 }
 .form{
     background-color: #db3028;
