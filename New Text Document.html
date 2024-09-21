@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <textarea id="message" placeholder="Message"></textarea>
+        <button type="button" onclick="sendToWhatsApp()">Submit</button>
+    </form>
+<script>
+    function sendToWhatsApp() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var message = document.getElementById("message").value;
+
+    var url = "https://wa.me/+249993005700?text=" 
+              + "*Name:* " + name + "%0a"
+              + "*Email:* " + email + "%0a"
+              + "*Phone:* " + phone + "%0a"
+              + "*Message:* " + message;
+
+    window.open(url, '_blank').focus();
+}
+
+</script>    
+</body>
+</html>

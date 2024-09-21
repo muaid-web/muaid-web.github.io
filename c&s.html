@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Sondos Taiba | الشكاوي والاقتراحات</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,18 +30,14 @@
         <nav>
             <ul>
                 <li><img src="images/logo.png"></li>
-                <li><a href="">الصفحة الرئسية</a></li>
-                <li><a href="">العيادات</a></li>
-                <li><a href="">الأطباء</a></li>
-                <li><a href="">من نحن</a></li>
-                <li><a href="">تواصل معنا</a></li>
+                <li><a href="index.html">الصفحة الرئسية</a></li>
             </ul>
         </nav>
     </header>
     <section class="form" id="form">
         <div class="form-container">
             <h2>الشكاوي والاقتراحات</h2>
-            <form action="/submit_appointment" method="post">
+            <form action="/c&sReCAPTCHA.php" method="post">
                 <div class="form-group">
                     <div class="half-width">
                         <label for="first_name">الاسم الأول:</label>
@@ -65,10 +62,11 @@
                     <label for="message">أكتب هنا :</label>
                     <textarea id="message" name="message" rows="5" placeholder="أدخل رسالتك" required></textarea>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
                 <div class="form-group">
                     <button type="submit">إرسال</button>
                 </div>
-            </form>
+            </form>            
         </div>
     </section>
     <footer class="footer">
@@ -80,7 +78,7 @@
             <h2>روابط تهمك</h2>
             <ul>
                 <ul>
-                    <li><a href="">الصفحة الرئسية</a></li>
+                    <li><a href="index.html">الصفحة الرئسية</a></li>
                     <li><a href="https://www.moh.gov.sa/Pages/default.aspx">وزارة الصحة</a></li>
                     <li><a href="https://www.srca.org.sa/">هئية الهلال الأحمر السعودي</a></li>
                     <li><a href="https://www.sfda.gov.sa/">الهئية العامة للغذاء و الدواء</a></li>
@@ -95,7 +93,7 @@
                     <li><a href="c&s.html">الشكاوي والاقتراحات</a></li>
                     <li><a href="career form.html">الوظايف</a></li>
                     <li><a href="dis.html">خدمه ذوي الاحتياجات الخاصه</a></li>
-                    <li><a href="shohadaa form.html">خدمه اسر شهداء الواجب</a></li>
+                    <li><a href="shohadaa form.html">خدمه اسر شهداء </a></li>
                 </ul>
             </ul>
         </div>
