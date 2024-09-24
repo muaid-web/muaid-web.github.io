@@ -1,4 +1,4 @@
-@media only screen and(max-width: 768px){
+@media only screen and(max-width: 810){
     html {
         width: 100%;
         max-width: 600px;
@@ -33,7 +33,7 @@ body{
     font-size: 16px;
     font-weight: bold;
 }
-@media (max-width: 768px) {
+@media (max-width: 810) {
     .frst {
         grid-template-columns: 1fr;
         grid-column-gap: 20px;
@@ -56,6 +56,11 @@ h4{
     font-size: 38px;
     margin-right: 90px;
     color: #db3028;
+}
+@media only screen and (max-width: 480px) {
+    h4{
+        margin: 0;
+    }
 }
 nav{
     position: relative;
@@ -83,6 +88,22 @@ li{
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
+}
+@media (max-width: 480px){
+    .header ul{
+        padding: 0;
+    }
+    .header img{
+        width: 40px;
+        height: 40px;
+    }
+    .header a{
+        font-size: 11px;
+        font-weight: bold;
+    }
+    .header{
+        height: 65px;
+    }
 }
 .expandable {
     display: none;
@@ -154,7 +175,7 @@ li{
         cursor: pointer;
         outline: none; /* Added for better styling */
     }
-    @media (max-width: 768px) {
+    @media (max-width: 810) {
         .slider-container {
             height: 400px;
         }
@@ -193,7 +214,13 @@ li{
         }
     
         .slide-content p {
-            width: 80%;
+            width: 100%;
+        }
+        .slide-content {
+            width: 100%;
+        }
+        .slide-content h1{
+            font-size: 15px;
         }
     
         .slide-content button {
@@ -255,7 +282,7 @@ li{
         color: #db3028;
         background-color: #ffffff;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 810) {
         .main-slider {
             height: auto;
         }
@@ -278,18 +305,21 @@ li{
     @media only screen and (max-width: 480px) {
         .slider-items {
             padding: 15px;
-            top: 30%;
+            width: 100%;
         }
         .slider-items h1 {
-            font-size: 36px;
+            font-size: 18px;
             margin: auto;
         }
         .slider-items h2 {
-            font-size: 18px;
+            display: none;
         }
         .slider-items a {
-            font-size: 16px;
-            padding: 5px 10px;
+            font-size: 12px;
+            padding: 0px;
+        }
+        .slider-controls{
+            display: none;
         }
     }
 .services-card{
@@ -315,7 +345,7 @@ li{
     font-size: 16px;
     font-weight: bold;
 }
-@media (max-width: 768px) {
+@media (max-width: 810) {
     .services-card {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -323,22 +353,28 @@ li{
 
 /* Styles for screens 480px and below */
 @media (max-width: 480px) {
-    .services-card {
-        grid-template-columns: 1fr;
+    .services-card{
+        display: grid;
+        grid-template-columns: repeat(4, 2fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 22px;
+        align-items: center;
+        justify-items: center;  
+        border-bottom: solid 10px #db3028;    
     }
-    
-    .srv-crd {
-        width: 100%;
-        height: auto;
+    .srv-crd{
+        text-align: center;
+        height: 163px;
+        width: 92px;
     }
-    
-    .srv-crd img {
-        width: 100px;
-        padding: 20px;
+    .srv-crd img{
+        padding: 0px;
+        width: 44px;
     }
-    
-    .srv-crd p {
-        font-size: 14px;
+    .srv-crd p{
+        color: #db3028;
+        font-size: 16px;
+        font-weight: bold;
     }
 }
 .news {
@@ -400,7 +436,7 @@ li{
 }
 
 /* Media Queries for responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 810) {
     .nws {
         width: 40%;
         margin-bottom: 20px;
@@ -428,6 +464,7 @@ li{
 @media (max-width: 480px) {
     .nws {
         width: 100%;
+        margin-bottom: 10px;
     }
 
     .gallery > img {
@@ -438,6 +475,19 @@ li{
     iframe {
         width: 100%;
         height: auto;
+    }
+    .gallery{
+        --d: 20s;
+        overflow: unset;
+    }
+    .same{
+        display: flex;
+        justify-content: space-between;
+    }
+    .same img{
+        margin-left: 5px;
+        margin-left: 5px;
+        width: 200px;
     }
 }
 
@@ -462,7 +512,7 @@ li{
     font-size: 20px;
 }
 /* Media query for devices with a max-width of 768px */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 810) {
     .massage {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -481,14 +531,15 @@ li{
 /* Media query for devices with a max-width of 480px */
 @media only screen and (max-width: 480px) {
     .massage {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-column-gap: 5px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px; 
+        box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.784);
     }
-
-    .massage h1, .massage p {
-        margin-right: 10px;
-        font-size: 16px;
+    .massage{
+        height: fit-content;
     }
 }
 .info {
@@ -664,6 +715,51 @@ margin-bottom: 10px;
 .form-group .radio-group input[type="radio"]:checked {
     background-color: #db3028;
 }
+@media (max-width: 480px) {
+    .clinic-select{
+        padding: 5px;
+        border: #db3028 4px solid;
+    }
+    .form-container{
+        font-size: 20px;
+        width: 90%;
+        padding: 10px;
+    }
+    .form-container h2{
+        font-size: 20px;
+    }
+    .form-group .radio-group{
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+    }
+    .form-group .radio-group input[type="radio"] {
+        width: 49%;
+        height: 1em;
+      }
+    .form label{
+        width: 43%;
+        font-weight: bold;
+        font-size: 12px;
+        padding-left: 5px;
+    }
+    .form-group button{
+        padding: 2px 6px;
+        border-radius: 2px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+        width: 70%;
+        padding: 4px;
+        border: 3px solid #db3028;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #db3028;
+      }
+}
 .tabs {
     background-position: center;
     background-size: cover;
@@ -772,6 +868,38 @@ margin-bottom: 10px;
     border-radius: 10px;
     height: fit-content;
   }
+
+  @media (max-width: 480px){
+    .tabs{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+    }
+    .tabs label{
+        font-size: 11px;
+        border-radius: 5px;
+        text-align: center;
+        order: 1;
+        width: 26%;
+        display: block;
+        margin-right: 0.2rem;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background ease 0.2s;
+        padding: 0;
+    }
+    .tab{
+        padding: 0;
+        margin: 0;
+    }
+    .tabs label{
+        margin-top: 10px
+    }
+    .info-sec p{
+        font-size: 14px;
+    }
+  }
 .map{
     padding: 3%;
 }
@@ -825,7 +953,7 @@ footer {
 }
 
 /* Media query for devices with a max-width of 768px */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 810) {
     footer {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
