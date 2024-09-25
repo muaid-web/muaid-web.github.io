@@ -400,9 +400,8 @@ li{
 @media (max-width: 480px) {
     .services-card{
         display: grid;
-        grid-template-columns: repeat(4, 2fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
-        grid-column-gap: 22px;
         align-items: center;
         justify-items: center;  
         border-bottom: solid 10px #db3028;    
@@ -410,7 +409,7 @@ li{
     .srv-crd{
         text-align: center;
         height: 163px;
-        width: 92px;
+        width: 83px;
     }
     .srv-crd img{
         padding: 0px;
