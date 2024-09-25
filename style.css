@@ -1,7 +1,7 @@
-@media only screen and(max-width: 810px){
+@media only screen and(max-width: 768px){
     html {
         width: 100%;
-        max-width: 810px;
+        max-width: 768;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -49,7 +49,7 @@ body{
     font-size: 16px;
     font-weight: bold;
 }
-@media (max-width: 810) {
+@media (max-width: 768px) {
     .frst {
         grid-template-columns: 1fr;
         grid-column-gap: 20px;
@@ -205,7 +205,7 @@ li{
         cursor: pointer;
         outline: none; /* Added for better styling */
     }
-    @media (max-width: 810) {
+    @media (max-width: 768px) {
         .slider-container {
             height: 400px;
         }
@@ -327,7 +327,7 @@ li{
         color: #db3028;
         background-color: #ffffff;
     }
-    @media only screen and (max-width: 810) {
+    @media only screen and (max-width: 768px) {
         .main-slider {
             height: auto;
         }
@@ -390,7 +390,7 @@ li{
     font-size: 16px;
     font-weight: bold;
 }
-@media (max-width: 810) {
+@media (max-width: 768px) {
     .services-card {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -481,7 +481,7 @@ li{
 }
 
 /* Media Queries for responsiveness */
-@media (max-width: 810) {
+@media (max-width: 768px) {
     .nws {
         width: 40%;
         margin-bottom: 20px;
@@ -558,7 +558,7 @@ li{
     font-size: 20px;
 }
 /* Media query for devices with a max-width of 768px */
-@media only screen and (max-width: 810) {
+@media only screen and (max-width: 768px) {
     .massage {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -807,6 +807,15 @@ margin-bottom: 10px;
         color: #db3028;
       }
 }
+@media (max-width: 768px){
+    .form-group label{
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    .form button{
+        margin-top: 10px;
+    }
+}
 .tabs {
     background-position: center;
     background-size: cover;
@@ -947,6 +956,16 @@ margin-bottom: 10px;
         font-size: 14px;
     }
   }
+  @media (max-width: 768px){
+    .slide-content{
+        height: 82%;
+        bottom: 11%;
+    }
+    .tabs label{
+        width: 27%;
+        padding: 0;
+    }
+  }
 .map{
     padding: 3%;
 }
@@ -1000,7 +1019,7 @@ footer {
 }
 
 /* Media query for devices with a max-width of 768px */
-@media only screen and (max-width: 810) {
+@media only screen and (max-width: 768px) {
     footer {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
