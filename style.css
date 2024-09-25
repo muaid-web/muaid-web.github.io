@@ -256,7 +256,7 @@ li{
         }
         .slide-content {
             margin-top: 10px;
-            width: 100%;
+            width: 99%;
             padding: 0;
             display: grid;
             place-items: center;
