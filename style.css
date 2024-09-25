@@ -405,7 +405,7 @@ li{
         align-items: center;
         justify-items: center;  
         border-bottom: solid 10px #db3028;    
-        max-width: 480px;
+        max-width: 100%;
     }
     .srv-crd{
         text-align: center;
