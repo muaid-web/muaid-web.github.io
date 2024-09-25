@@ -260,8 +260,8 @@ li{
             padding: 0;
             display: grid;
             place-items: center;
-            height: 100%;
-            bottom: 0%;
+            height: 95%;
+            bottom: 2%;
         }
         .slide-content h1{
             font-size: 15px;
@@ -347,7 +347,7 @@ li{
         }
     }
     
-    @media only screen and (max-width: 480px) {
+    @media (max-width: 480px) {
         .slider-items {
             padding: 15px;
             width: 90%;
@@ -532,8 +532,8 @@ li{
     }
     .same img{
         margin-left: 5px;
-        margin-left: 5px;
-        width: 200px;
+        margin-right: 5px;
+        width: 180px;
     }
 }
 
