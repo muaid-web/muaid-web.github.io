@@ -490,6 +490,7 @@ li{
         margin-left: 5%;
         margin-right: 5%;
     }
+    
     .same{
         display: flex;
         justify-content: space-around;
@@ -511,7 +512,9 @@ li{
         width: 100%;
         margin-bottom: 10px;
     }
-
+    .news{
+        width: 480px;
+    }
     .gallery > img {
         height: 333px;
         width: 226px;
