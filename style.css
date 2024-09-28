@@ -423,15 +423,14 @@ li{
     }
 }
 .news {
+    margin-right: 2%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    justify-items: center;
 }
 
 .nws {
-    width: 25%;
+    width: 26%;
     align-items: center;
     justify-items: center;
 }
@@ -1004,7 +1003,10 @@ footer {
     display: block; /* Make links block elements for better spacing */
     margin: 5px 0; /* Add margin for spacing */
 }
-
+.locations a{
+    color: #ffffff;
+    text-decoration: none;
+}
 .contact {
     flex-direction: column;
     text-align: center; /* Center align contact info */
