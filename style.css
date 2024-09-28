@@ -508,11 +508,10 @@ li{
 
 @media (max-width: 480px) {
     .nws {
-        width: 100%;
         margin-bottom: 10px;
+        width: 100%;
     }
     .news{
-        width: 480px;
     }
     .gallery > img {
         height: 333px;
@@ -530,12 +529,14 @@ li{
     }
     .same{
         display: flex;
-        justify-content: space-between;
     }
     .same img{
         margin-left: 5px;
         margin-right: 5px;
         width: 180px;
+    }
+    .nws-nws{
+        margin: 0;
     }
 }
 
