@@ -427,6 +427,7 @@ li{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: #db312850;
 }
 
 .nws {
