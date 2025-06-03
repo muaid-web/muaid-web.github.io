@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Aesthetics Clinic - HTML Version</title>
+    <!-- Tailwind CSS via Play CDN (includes JIT compiler and typography plugin) -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography,aspect-ratio"></script>
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* For smooth scrolling on nav clicks if using # links directly */
+        }
+        /* Basic styling for hidden sections */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        /* Custom modal styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000; /* High z-index */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 500px; /* Adjust as needed */
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    </style>
+    <script>
+        // Tailwind CSS configuration (optional, if needed for customization with Play CDN)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Navbar content will be injected by JavaScript -->
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="min-h-screen">
+        <!-- Page sections will be injected here -->
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-800 text-gray-300 pt-12 pb-8">
+        <!-- Footer content will be injected by JavaScript -->
+    </footer>
+
+    <!-- Doctor Bio Modal Structure -->
+    <div id="doctorBioModal" class="modal-overlay">
+        <div class="modal-content">
+            <div id="doctorBioModalContent" class="prose">
+                <!-- Bio content will be injected here -->
+            </div>
+            <button id="closeDoctorBioModal" class="mt-6 px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- DATA STORE (ClinicData) ---
+        const clinicData = {
+            clinicName: "Aura Aesthetics Clinic",
+            tagline: "Crafting Confidence, Inspiring Beauty.",
+            contact: {
+                phone: "+1 (555) 123-4567",
+                email: "contact@auraaesthetics.clinic",
+                address: "123 Beauty Lane, Suite 100, Serenity City, SC 54321",
+                mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799085409!2d-74.25986663796492!3d40.69767006373604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sae!4v1622000000000!5m2!1sen!2sae" // Example Embed URL
+            },
+            socialMedia: [
+                { name: "Facebook", icon: "facebook", url: "#" },
+                { name: "Instagram", icon: "instagram", url: "#" },
+                { name: "Twitter", icon: "twitter", url: "#" },
+                { name: "LinkedIn", icon: "linkedin", url: "#" },
+            ],
+            navigation: [
+                { name: "Home", path: "home" },
+                { name: "About Us", path: "about" },
+                { name: "Services", path: "services" },
+                { name: "Gallery", path: "gallery" },
+                { name: "Testimonials", path: "testimonials" },
+                { name: "Blog", path: "blog" },
+                { name: "Contact", path: "contact" },
+            ],
+            services: [
+                {
+                    id: "facelift",
+                    name: "Facial Rejuvenation",
+                    shortDescription: "Restore youthful contours and smooth away wrinkles with our advanced facelift techniques.",
+                    longDescription: "Our facial rejuvenation procedures, including traditional facelifts, mini-lifts, and neck lifts, are designed to address signs of aging by tightening underlying tissues and removing excess skin. Dr. Evelyn Reed utilizes cutting-edge techniques to achieve natural-looking results that refresh your appearance without an 'overdone' look. Each procedure is tailored to your unique facial structure and aesthetic goals.",
+                    icon: "user",
+                    imagePrompt: "abstract facial contours",
+                    details: {
+                        procedureTime: "2-4 hours",
+                        anesthesia: "General or Local with Sedation",
+                        recoveryTime: "2-3 weeks",
+                        benefits: ["Reduces wrinkles and sagging skin", "Restores youthful facial contours", "Improves self-confidence", "Long-lasting results"]
+                    }
+                },
+                {
+                    id: "breast_augmentation",
+                    name: "Breast Augmentation",
+                    shortDescription: "Enhance the size and shape of your breasts for a more balanced and confident silhouette.",
+                    longDescription: "Breast augmentation remains one of the most popular cosmetic procedures. At Aura Aesthetics, we offer a range of implant types (silicone and saline) and incision techniques to achieve your desired breast size and shape. Our focus is on creating natural-looking enhancements that complement your body proportions and aesthetic preferences.",
+                    icon: "heart",
+                    imagePrompt: "body sculpting illustration",
+                    details: {
+                        procedureTime: "1-2 hours",
+                        anesthesia: "General Anesthesia",
+                        recoveryTime: "1-2 weeks for light activities, 4-6 weeks for full recovery",
+                        benefits: ["Increases breast volume and fullness", "Improves breast symmetry", "Enhances body proportions", "Boosts self-esteem"]
+                    }
+                },
+                {
+                    id: "liposuction",
+                    name: "Body Contouring (Liposuction)",
+                    shortDescription: "Sculpt and refine your body by removing stubborn fat deposits resistant to diet and exercise.",
+                    longDescription: "Liposuction is a versatile body contouring procedure that targets localized fat deposits in areas such as the abdomen, thighs, hips, arms, and neck. We utilize advanced liposuction techniques, including tumescent and power-assisted liposuction, for precise fat removal and smoother results. This procedure is ideal for individuals close to their target weight who wish to address specific problem areas.",
+                    icon: "edit-2",
+                    imagePrompt: "skin rejuvenation texture",
+                    details: {
+                        procedureTime: "1-3 hours (depending on areas treated)",
+                        anesthesia: "Local with Sedation or General Anesthesia",
+                        recoveryTime: "1-2 weeks, compression garments worn for several weeks",
+                        benefits: ["Removes unwanted fat deposits", "Improves body shape and definition", "Can target multiple areas in one session", "Minimal scarring"]
+                    }
+                },
+                {
+                    id: "non_surgical",
+                    name: "Non-Surgical Treatments",
+                    shortDescription: "Refresh your look with our range of minimally invasive treatments, including Botox and fillers.",
+                    longDescription: "For those seeking rejuvenation without surgery, we offer a variety of non-surgical options. These include neuromodulators like Botox® to reduce wrinkles, dermal fillers to restore volume and smooth lines, chemical peels for skin resurfacing, and advanced laser treatments. These treatments offer minimal downtime and can provide significant improvements in skin texture, tone, and overall appearance.",
+                    icon: "check-circle",
+                    imagePrompt: "abstract beauty concept",
+                    details: {
+                        procedureTime: "15-60 minutes per session",
+                        anesthesia: "Topical numbing cream (if needed)",
+                        recoveryTime: "Minimal to none, some redness or swelling possible",
+                        benefits: ["Reduces fine lines and wrinkles", "Restores facial volume", "Improves skin texture and tone", "Quick procedures with little downtime"]
+                    }
+                }
+            ],
+            doctors: [
+                {
+                    name: "Dr. Evelyn Reed",
+                    specialty: "Board-Certified Plastic Surgeon",
+                    bio: "Dr. Evelyn Reed is a distinguished, board-certified plastic surgeon renowned for her meticulous technique and artistic eye. With over 15 years of experience, she specializes in facial rejuvenation, breast surgery, and body contouring. Dr. Reed is dedicated to providing compassionate, personalized care, ensuring each patient achieves beautiful, natural-looking results that enhance their confidence and well-being. She is an active member of the American Society of Plastic Surgeons and consistently stays at the forefront of innovative surgical techniques.",
+                    imagePrompt: "friendly surgeon portrait",
+                    education: ["MD, Stanford University School of Medicine", "Residency in Plastic Surgery, Johns Hopkins Hospital", "Fellowship in Aesthetic Surgery, Manhattan Eye, Ear & Throat Hospital"],
+                    certifications: ["American Board of Plastic Surgery", "Fellow of the American College of Surgeons (FACS)"]
+                }
+            ],
+            testimonials: [
+                { quote: "From the moment I walked into Aura Aesthetics, I felt welcomed and understood. Dr. Reed and her team are exceptional. My results are beyond what I hoped for!", name: "Jessica R.", procedure: "Facial Rejuvenation", imagePrompt: "happy patient smiling" },
+                { quote: "I was nervous about surgery, but Dr. Reed's calm demeanor and thorough explanations put me at ease. The care I received was top-notch, and I'm thrilled with my new look.", name: "Amanda S.", procedure: "Breast Augmentation", imagePrompt: "another happy patient" },
+                { quote: "The professionalism and attention to detail at this clinic are outstanding. I highly recommend Aura Aesthetics for anyone considering a cosmetic procedure.", name: "Michael B.", procedure: "Liposuction", imagePrompt: "happy patient smiling" }
+            ],
+            blogPosts: [
+                { id: "1", title: "The Art and Science of Natural-Looking Results", date: "May 28, 2025", author: "Dr. Evelyn Reed", excerpt: "Achieving results that enhance your beauty without appearing 'done' is a hallmark of expert plastic surgery...", imagePrompt: "blog post abstract beauty", content: "Achieving results that enhance your beauty without appearing 'done' is a hallmark of expert plastic surgery. It requires a deep understanding of anatomy, an artistic eye, and meticulous surgical technique. At Aura Aesthetics, our philosophy centers on personalized treatment plans that respect your unique features and aesthetic goals. We believe in subtle enhancements that restore youthfulness and harmony, allowing your natural beauty to shine through. During your consultation, we'll discuss how we can achieve these refined outcomes for you." },
+                { id: "2", title: "Choosing the Right Time for Cosmetic Surgery", date: "June 3, 2025", author: "Aura Aesthetics Clinic Staff", excerpt: "Many factors go into deciding the right time for a cosmetic procedure. We explore some key considerations...", imagePrompt: "consultation room interior", content: "Deciding to undergo cosmetic surgery is a significant personal choice. Factors to consider include your physical health, lifestyle, emotional readiness, and support system. There's no 'one-size-fits-all' answer, but generally, it's best to plan procedures when you have adequate time for recovery and can avoid major life stressors. Spring and fall are popular times due to milder weather, but your personal circumstances are most important. We encourage an open discussion with Dr. Reed to determine the optimal timing for your journey." }
+            ],
+            galleryItems: [
+                { id: 1, beforeImagePrompt: "before after placeholder 1", afterImagePrompt: "before after placeholder 2", procedure: "Rhinoplasty", description: "Refinement of nasal bridge and tip for improved facial harmony." },
+                { id: 2, beforeImagePrompt: "before after placeholder 2", afterImagePrompt: "before after placeholder 1", procedure: "Facelift", description: "Significant reduction in jowling and neck laxity, restoring youthful contours." },
+                { id: 3, beforeImagePrompt: "before after placeholder 1", afterImagePrompt: "before after placeholder 2", procedure: "Breast Augmentation", description: "Enhanced breast volume and improved symmetry, creating a natural and proportionate look." },
+            ],
+            faq: [
+                { question: "What makes Aura Aesthetics Clinic different?", answer: "At Aura Aesthetics, we combine artistry with surgical precision. Our lead surgeon, Dr. Evelyn Reed, is board-certified and renowned for her natural-looking results. We prioritize patient safety, comfort, and personalized care from consultation through recovery." },
+                { question: "How long is the recovery period for most procedures?", answer: "Recovery times vary depending on the procedure. Non-surgical treatments may have little to no downtime, while surgical procedures can range from 1-2 weeks for initial recovery to several months for final results to fully manifest. We provide detailed post-operative care instructions for each patient." },
+                { question: "Are consultations free?", answer: "We offer an initial consultation to discuss your goals and determine if you are a good candidate for your desired procedure. Please contact our office for details on consultation fees, which are often applied towards the cost of your procedure." },
+                { question: "How can I prepare for my surgery?", answer: "Pre-operative instructions will be provided well in advance of your surgery date. These typically include guidelines on medications to avoid, fasting, and arranging for post-surgery support. Following these instructions carefully is crucial for a smooth procedure and recovery." }
+            ]
+        };
+
+        // --- UTILITY FUNCTIONS ---
+        // Function to generate placeholder image URLs (same as React version)
+        const generateImageUrl = (prompt) => {
+            const placeholderImages = {
+                "abstract background serene beauty": "https://images.unsplash.com/photo-1621021544363-02108c715c1b?q=80&w=1468&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "modern clinic interior reception": "https://images.unsplash.com/photo-1611075384322-731537ad7971?q=80&w=1523&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "friendly surgeon portrait": "https://placehold.co/400x400/D1E9EF/333333?text=Dr.+Evelyn+Reed",
+                "abstract facial contours": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "body sculpting illustration": "https://images.unsplash.com/photo-1678872381876-a2a3afe03fd8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "skin rejuvenation texture": "https://images.unsplash.com/photo-1728949202477-bad2935775cb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "happy patient smiling": "https://placehold.co/100x100/D1E9EF/333333?text=JR",
+                "another happy patient": "https://placehold.co/100x100/E0F2F7/333333?text=AS",
+                "blog post abstract beauty": "https://placehold.co/600x400/F0F4F8/333333?text=Beauty+Insights",
+                "clinic exterior modern building": "https://placehold.co/1200x600/EAF6FA/333333?text=Clinic+Building",
+                "consultation room interior": "https://placehold.co/600x400/F5F5F5/333333?text=Consultation+Room",
+                "surgical tools stylized": "https://placehold.co/600x400/E0E0E0/333333?text=Precision+Care",
+                "diverse group of smiling people": "https://placehold.co/1200x600/D1E9EF/333333?text=Our+Community",
+                "before after placeholder 1": "https://placehold.co/300x400/E0F2F7/333333?text=Before",
+                "before after placeholder 2": "https://placehold.co/300x400/D1E9EF/333333?text=After",
+            };
+            return placeholderImages[prompt] || `https://placehold.co/600x400/cccccc/333333?text=${prompt.replace(/\s+/g, '+')}`;
+        };
+
+        const createIcon = (iconName, classes = "w-5 h-5") => `<i data-lucide="${iconName}" class="${classes}"></i>`;
+
+        // --- RENDER FUNCTIONS ---
+
+        // Render Navbar
+        function renderNavbar() {
+            const navbarContainer = document.getElementById('navbar');
+            let navLinksHtml = clinicData.navigation.map(item => `
+                <a href="#${item.path}" data-page="${item.path}" class="nav-link text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">
+                    ${item.name}
+                </a>
+            `).join('');
+
+            navbarContainer.innerHTML = `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-20">
+                        <div class="flex items-center">
+                            <a href="#home" data-page="home" class="nav-link flex-shrink-0 text-2xl font-bold text-teal-600 hover:text-teal-700 transition duration-300">
+                                ${clinicData.clinicName}
+                            </a>
+                        </div>
+                        <div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline space-x-4">
+                                ${navLinksHtml}
+                            </div>
+                        </div>
+                        <div class="md:hidden flex items-center">
+                            <button id="mobile-menu-button" type="button" class="bg-teal-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-teal-500 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                <span class="sr-only">Open main menu</span>
+                                ${createIcon('menu', 'h-6 w-6 block')}
+                                ${createIcon('x', 'h-6 w-6 hidden')}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile menu -->
+                <div class="md:hidden hidden" id="mobile-menu">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        ${clinicData.navigation.map(item => `
+                            <a href="#${item.path}" data-page="${item.path}" class="nav-link text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-300">
+                                ${item.name}
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Footer
+        function renderFooter() {
+            const footerContainer = document.getElementById('footer');
+            const quickLinksHtml = clinicData.navigation.map(item => `
+                <li><a href="#${item.path}" data-page="${item.path}" class="nav-link hover:text-teal-400 transition duration-300 text-sm">${item.name}</a></li>
+            `).join('');
+            const socialMediaHtml = clinicData.socialMedia.map(social => `
+                <a href="${social.url}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal-400 transition duration-300">
+                    ${createIcon(social.icon, 'w-6 h-6')}
+                    <span class="sr-only">${social.name}</span>
+                </a>
+            `).join('');
+
+            footerContainer.innerHTML = `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <h5 class="text-xl font-semibold text-white mb-4">${clinicData.clinicName}</h5>
+                            <p class="text-sm leading-relaxed">${clinicData.tagline} Our commitment is to provide exceptional care and stunning, natural-looking results.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-lg font-semibold text-white mb-4">Quick Links</h5>
+                            <ul class="space-y-2">${quickLinksHtml}</ul>
+                        </div>
+                        <div>
+                            <h5 class="text-lg font-semibold text-white mb-4">Contact Us</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start">${createIcon('map-pin', 'w-5 h-5 mr-2 mt-1 text-teal-400 flex-shrink-0')}<span>${clinicData.contact.address}</span></li>
+                                <li class="flex items-center">${createIcon('phone', 'w-5 h-5 mr-2 text-teal-400 flex-shrink-0')}<a href="tel:${clinicData.contact.phone}" class="hover:text-teal-400">${clinicData.contact.phone}</a></li>
+                                <li class="flex items-center">${createIcon('mail', 'w-5 h-5 mr-2 text-teal-400 flex-shrink-0')}<a href="mailto:${clinicData.contact.email}" class="hover:text-teal-400">${clinicData.contact.email}</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-lg font-semibold text-white mb-4">Follow Us</h5>
+                            <div class="flex space-x-4">${socialMediaHtml}</div>
+                            <div class="mt-6">
+                                <h5 class="text-lg font-semibold text-white mb-2">Office Hours</h5>
+                                <p class="text-sm">Monday - Friday: 9 AM - 5 PM</p>
+                                <p class="text-sm">Saturday: 10 AM - 2 PM (By Appointment)</p>
+                                <p class="text-sm">Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                        <p>© ${new Date().getFullYear()} ${clinicData.clinicName}. All Rights Reserved.</p>
+                        <p class="mt-1">Designed with passion.</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Function to create a Page Header
+        function createPageHeader(title, subtitle) {
+            return `
+                <div class="bg-teal-50 py-12 sm:py-16">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h1 class="text-3xl sm:text-4xl font-bold text-teal-700 tracking-tight">${title}</h1>
+                        ${subtitle ? `<p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">${subtitle}</p>` : ''}
+                    </div>
+                </div>`;
+        }
+
+        // --- PAGE RENDERING FUNCTIONS ---
+        // Each function will return the HTML string for its respective page/section.
+
+        function renderHomePage() {
+            const featuredServicesHtml = clinicData.services.slice(0, 3).map(service => `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 flex flex-col">
+                    <img src="${generateImageUrl(service.imagePrompt)}" alt="${service.name}" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-2">${service.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">${service.shortDescription}</p>
+                        <button data-page="service/${service.id}" class="nav-link mt-auto inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-600 bg-teal-100 hover:bg-teal-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
+                            Learn More ${createIcon('chevron-right', 'w-4 h-4 ml-1')}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const testimonialsSnippetHtml = clinicData.testimonials.slice(0,3).map(testimonial => `
+                <div class="bg-teal-50 p-8 rounded-lg shadow-lg">
+                    ${createIcon('message-square', 'w-9 h-9 text-teal-500 mb-4')}
+                    <p class="text-gray-700 italic mb-6">"${testimonial.quote}"</p>
+                    <div class="flex items-center">
+                       <img src="${generateImageUrl(testimonial.imagePrompt)}" alt="${testimonial.name}" class="w-12 h-12 rounded-full mr-4 object-cover">
+                      <div>
+                        <p class="font-semibold text-teal-700">${testimonial.name}</p>
+                        <p class="text-sm text-gray-500">${testimonial.procedure}</p>
+                      </div>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <div id="home-page" class="page-section">
+                    <!-- Hero Section -->
+                    <div class="relative bg-gradient-to-r from-teal-500 to-cyan-600 text-white min-h-[70vh] flex items-center">
+                        <img src="${generateImageUrl('abstract background serene beauty')}" alt="Serene beauty concept" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 z-10">
+                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                                Welcome to <span class="block sm:inline text-yellow-300">${clinicData.clinicName}</span>
+                            </h1>
+                            <p class="text-xl sm:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto">${clinicData.tagline}</p>
+                            <div class="space-y-4 sm:space-y-0 sm:space-x-4">
+                                <button data-page="services" class="nav-link bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 text-lg inline-flex items-center">
+                                    Explore Our Services ${createIcon('chevron-right', 'w-5 h-5 ml-2')}
+                                </button>
+                                <button data-page="contact" class="nav-link bg-transparent hover:bg-white text-white hover:text-teal-600 font-semibold py-3 px-8 rounded-lg border-2 border-white shadow-lg transform hover:scale-105 transition duration-300 text-lg inline-flex items-center">
+                                    Book a Consultation ${createIcon('calendar', 'w-5 h-5 ml-2')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Introduction Section -->
+                    <section class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="text-center mb-12">
+                                <h2 class="text-3xl font-bold text-teal-700 sm:text-4xl">Experience the Art of Transformation</h2>
+                                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                                    At ${clinicData.clinicName}, we blend medical expertise with an artistic touch to deliver results that enhance your natural beauty and boost your confidence. Discover a personalized approach to aesthetic care.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <img src="${generateImageUrl('modern clinic interior reception')}" alt="Modern clinic interior" class="rounded-lg shadow-xl w-full h-auto max-h-[400px] object-cover">
+                                </div>
+                                <div class="prose prose-lg text-gray-700">
+                                    <p>Welcome to a place where your aesthetic aspirations are understood and meticulously catered to. Our state-of-the-art facility is designed for your comfort and privacy, ensuring a serene experience from your first consultation to your final follow-up.</p>
+                                    <p>Led by the renowned Dr. Evelyn Reed, our team is committed to upholding the highest standards of safety and excellence. We believe in empowering our patients through education and collaborative decision-making.</p>
+                                    <button data-page="about" class="nav-link mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
+                                        Meet Our Team ${createIcon('arrow-right', 'w-4 h-4 ml-2')}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Featured Services Section -->
+                    <section class="py-16 sm:py-24 bg-teal-50">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="text-center mb-12">
+                                <h2 class="text-3xl font-bold text-teal-700 sm:text-4xl">Our Signature Procedures</h2>
+                                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Discover a range of services tailored to meet your unique aesthetic goals, performed with precision and artistry.</p>
+                            </div>
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">${featuredServicesHtml}</div>
+                            <div class="text-center mt-12">
+                                <button data-page="services" class="nav-link inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
+                                    View All Services ${createIcon('arrow-right', 'w-4 h-4 ml-2')}
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Testimonial Snippet Section -->
+                    <section class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="text-center mb-12">
+                                <h2 class="text-3xl font-bold text-teal-700 sm:text-4xl">Words From Our Patients</h2>
+                                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Hear directly from those who have experienced the Aura Aesthetics difference.</p>
+                            </div>
+                            <div class="grid md:grid-cols-3 gap-8">${testimonialsSnippetHtml}</div>
+                            <div class="text-center mt-12">
+                                <button data-page="testimonials" class="nav-link inline-flex items-center px-6 py-3 border border-teal-600 text-base font-medium rounded-md text-teal-600 bg-transparent hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
+                                    Read More Testimonials ${createIcon('chevron-right', 'w-4 h-4 ml-2')}
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Call to Action Section -->
+                    <section class="py-16 sm:py-24 bg-gradient-to-r from-teal-600 to-cyan-700 text-white">
+                        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                            <h2 class="text-3xl font-bold sm:text-4xl mb-6">Ready to Begin Your Transformation?</h2>
+                            <p class="text-xl text-teal-100 mb-8 max-w-2xl mx-auto">Schedule your confidential consultation with Dr. Evelyn Reed today and take the first step towards achieving your aesthetic dreams.</p>
+                            <button data-page="contact" class="nav-link bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-4 px-10 rounded-lg shadow-xl transform hover:scale-105 transition duration-300 text-lg inline-flex items-center">
+                                Book Your Consultation ${createIcon('calendar', 'w-5 h-5 ml-3')}
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderAboutPage() {
+            const doctor = clinicData.doctors[0];
+            const educationHtml = doctor.education.map(edu => `<li>${edu}</li>`).join('');
+            const certificationsHtml = doctor.certifications.map(cert => `<li>${cert}</li>`).join('');
+            return `
+                <div id="about-page" class="page-section">
+                    ${createPageHeader("About Aura Aesthetics Clinic", "Dedicated to Excellence in Aesthetic Medicine")}
+                    <section class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid md:grid-cols-2 gap-12 items-center">
+                                <div class="prose prose-lg text-gray-700">
+                                    <h2 class="text-2xl font-semibold text-teal-700 mb-4">Our Philosophy: Artistry, Precision, Care</h2>
+                                    <p>At ${clinicData.clinicName}, we believe that true beauty radiates from within. Our mission is to enhance your natural features and boost your self-confidence through state-of-the-art plastic surgery and non-surgical aesthetic treatments. We are committed to providing a personalized experience in a safe, comfortable, and confidential environment.</p>
+                                    <p>Our approach is founded on three core principles:</p>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li><strong>Artistic Vision:</strong> We view each patient as unique, tailoring procedures to achieve harmonious and natural-looking results that complement your individual beauty.</li>
+                                        <li><strong>Surgical Precision:</strong> Dr. Reed employs the latest, most advanced techniques and technologies to ensure the highest standards of safety and efficacy.</li>
+                                        <li><strong>Compassionate Care:</strong> Your well-being is our utmost priority. We provide comprehensive support and guidance throughout your entire journey, from initial consultation to post-operative care.</li>
+                                    </ul>
+                                </div>
+                                <div><img src="${generateImageUrl('clinic exterior modern building')}" alt="Modern clinic building" class="rounded-lg shadow-xl w-full h-auto max-h-[450px] object-cover"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="py-16 sm:py-24 bg-teal-50">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-3xl font-bold text-teal-700 text-center mb-12 sm:mb-16">Meet Our Expert Surgeon</h2>
+                            <div class="bg-white p-8 sm:p-12 rounded-xl shadow-2xl md:flex md:items-start md:space-x-10">
+                                <div class="md:w-1/3 text-center md:text-left mb-8 md:mb-0">
+                                    <img src="${generateImageUrl(doctor.imagePrompt)}" alt="${doctor.name}" class="w-48 h-48 sm:w-60 sm:h-60 rounded-full mx-auto md:mx-0 mb-6 shadow-lg border-4 border-white object-cover">
+                                    <h3 class="text-2xl font-bold text-teal-700">${doctor.name}</h3>
+                                    <p class="text-md text-teal-600 font-medium">${doctor.specialty}</p>
+                                </div>
+                                <div class="md:w-2/3 prose prose-lg text-gray-700">
+                                    <p>${doctor.bio}</p>
+                                    <h4 class="font-semibold text-teal-700 mt-6 mb-2">Education & Credentials:</h4>
+                                    <ul class="list-disc pl-5 space-y-1 text-sm">${educationHtml}${certificationsHtml}</ul>
+                                    <button id="learnMoreDoctorBtn" class="mt-6 inline-flex items-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700">Learn More About Dr. Reed</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-3xl font-bold text-teal-700 text-center mb-12">Our State-of-the-Art Facility</h2>
+                            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">Experience care in an environment designed for your safety, comfort, and privacy. Our clinic is equipped with the latest technology to ensure optimal outcomes.</p>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <img src="${generateImageUrl('consultation room interior')}" alt="Comfortable consultation room" class="rounded-lg shadow-xl w-full h-64 sm:h-80 object-cover">
+                                <img src="${generateImageUrl('surgical tools stylized')}" alt="Advanced surgical equipment" class="rounded-lg shadow-xl w-full h-64 sm:h-80 object-cover">
+                            </div>
+                            <p class="mt-12 text-center text-gray-700">We invite you to tour our facility during your consultation.</p>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderServicesPage() {
+            const servicesHtml = clinicData.services.map(service => `
+                <div class="bg-teal-50 rounded-xl shadow-lg overflow-hidden flex flex-col transition-shadow hover:shadow-2xl">
+                    <img src="${generateImageUrl(service.imagePrompt)}" alt="${service.name}" class="w-full h-64 object-cover">
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        ${createIcon(service.icon, 'w-9 h-9 text-teal-600 mb-4')}
+                        <h3 class="text-2xl font-semibold text-teal-700 mb-3">${service.name}</h3>
+                        <p class="text-gray-700 mb-5 flex-grow">${service.shortDescription}</p>
+                        <button data-page="service/${service.id}" class="nav-link mt-auto self-start inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">
+                            Discover More ${createIcon('chevron-right', 'w-4 h-4 ml-2')}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            return `
+                <div id="services-page" class="page-section">
+                    ${createPageHeader("Our Aesthetic Services", "Comprehensive solutions tailored to your unique beauty goals.")}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-10">${servicesHtml}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderServiceDetailPage(serviceId) {
+            const service = clinicData.services.find(s => s.id === serviceId);
+            if (!service) {
+                return `
+                    <div id="service-detail-page" class="page-section">
+                        ${createPageHeader("Service Not Found", "Please select a service from our list.")}
+                        <div class="text-center py-16">
+                            <button data-page="services" class="nav-link bg-teal-600 text-white px-6 py-3 rounded-md hover:bg-teal-700">Back to Services</button>
+                        </div>
+                    </div>`;
+            }
+            const benefitsHtml = service.details.benefits.map(benefit => `<li>${benefit}</li>`).join('');
+            return `
+                <div id="service-detail-page" class="page-section">
+                    ${createPageHeader(service.name, service.shortDescription)}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid lg:grid-cols-5 gap-12">
+                                <div class="lg:col-span-3">
+                                    <img src="${generateImageUrl(service.imagePrompt)}" alt="${service.name}" class="w-full rounded-lg shadow-xl mb-8 max-h-[500px] object-cover">
+                                    <div class="prose prose-lg max-w-none text-gray-700">
+                                        <h2 class="text-2xl font-semibold text-teal-700 mb-4">About ${service.name}</h2>
+                                        <p>${service.longDescription}</p>
+                                        ${service.details.benefits ? `
+                                            <h3 class="text-xl font-semibold text-teal-700 mt-8 mb-3">Key Benefits:</h3>
+                                            <ul class="list-disc pl-5 space-y-1">${benefitsHtml}</ul>` : ''}
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-2">
+                                    <div class="bg-teal-50 p-6 sm:p-8 rounded-lg shadow-lg sticky top-24">
+                                        <h3 class="text-xl font-semibold text-teal-700 mb-6">Procedure at a Glance</h3>
+                                        <ul class="space-y-4 text-gray-700">
+                                            <li class="flex items-start">${createIcon('calendar', 'w-5 h-5 mr-3 mt-1 text-teal-600 flex-shrink-0')}<div><strong>Procedure Time:</strong> ${service.details.procedureTime}</div></li>
+                                            <li class="flex items-start">${createIcon('shield-off', 'w-5 h-5 mr-3 mt-1 text-teal-600 flex-shrink-0')}<div><strong>Anesthesia:</strong> ${service.details.anesthesia}</div></li>
+                                            <li class="flex items-start">${createIcon('activity', 'w-5 h-5 mr-3 mt-1 text-teal-600 flex-shrink-0')}<div><strong>Recovery Time:</strong> ${service.details.recoveryTime}</div></li>
+                                        </ul>
+                                        <p class="mt-6 text-sm text-gray-600">Individual results and recovery times may vary. A personal consultation is necessary to determine if this procedure is right for you.</p>
+                                        <button data-page="contact" class="nav-link mt-8 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700">Schedule a Consultation ${createIcon('chevron-right', 'w-4 h-4 ml-2')}</button>
+                                        <button data-page="services" class="nav-link mt-4 w-full inline-flex items-center justify-center px-6 py-3 border border-teal-600 text-base font-medium rounded-md text-teal-600 bg-transparent hover:bg-teal-50">Back to All Services</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGalleryPage() {
+            const galleryItemsHtml = clinicData.galleryItems.map(item => `
+                <div class="bg-teal-50 rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-2">${item.procedure}</h3>
+                        <p class="text-sm text-gray-600 mb-4">${item.description}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-px">
+                        <div>
+                            <img src="${generateImageUrl(item.beforeImagePrompt)}" alt="Before - ${item.procedure}" class="w-full h-64 sm:h-80 object-cover">
+                            <p class="text-center py-2 bg-gray-200 text-sm font-medium text-gray-700">Before</p>
+                        </div>
+                        <div>
+                            <img src="${generateImageUrl(item.afterImagePrompt)}" alt="After - ${item.procedure}" class="w-full h-64 sm:h-80 object-cover">
+                            <p class="text-center py-2 bg-teal-200 text-sm font-medium text-teal-800">After</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            return `
+                <div id="gallery-page" class="page-section">
+                    ${createPageHeader("Patient Gallery", "Transformative Results, Real Confidence")}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">The following images are representative examples of the types of results that can be achieved. Individual results may vary. All images are used with patient consent or are illustrative placeholders. During your private consultation, Dr. Reed can show you more specific examples relevant to your desired procedure.</p>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">${galleryItemsHtml}</div>
+                            <p class="text-center text-gray-600 mt-12">To protect patient privacy, specific identifying features may be obscured.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTestimonialsPage() {
+            const testimonialsHtml = clinicData.testimonials.map(testimonial => `
+                <div class="bg-white p-8 rounded-xl shadow-xl flex flex-col">
+                    ${createIcon('message-square', 'w-10 h-10 text-teal-500 mb-6 self-start')}
+                    <p class="text-gray-700 italic mb-6 flex-grow">"${testimonial.quote}"</p>
+                    <div class="flex items-center mt-auto pt-6 border-t border-teal-100">
+                        <img src="${generateImageUrl(testimonial.imagePrompt)}" alt="${testimonial.name}" class="w-16 h-16 rounded-full mr-4 shadow-md object-cover">
+                        <div>
+                            <p class="font-bold text-teal-700 text-lg">${testimonial.name}</p>
+                            <p class="text-sm text-gray-500">${testimonial.procedure}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            return `
+                <div id="testimonials-page" class="page-section">
+                    ${createPageHeader("Patient Testimonials", "Hear What Our Patients Say About Their Experiences")}
+                    <div class="py-16 sm:py-24 bg-teal-50">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">${testimonialsHtml}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBlogListPage() {
+            const blogPostsHtml = clinicData.blogPosts.map(post => `
+                <div class="bg-teal-50 rounded-lg shadow-lg overflow-hidden flex flex-col transition-shadow hover:shadow-xl">
+                    <img src="${generateImageUrl(post.imagePrompt)}" alt="${post.title}" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-2">${post.title}</h3>
+                        <p class="text-xs text-gray-500 mb-1">By ${post.author} on ${post.date}</p>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">${post.excerpt}</p>
+                        <button data-page="blog/${post.id}" class="nav-link mt-auto self-start inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-teal-600 bg-teal-100 hover:bg-teal-200 transition duration-300">
+                            Read Full Post ${createIcon('chevron-right', 'w-4 h-4 ml-1')}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            return `
+                <div id="blog-list-page" class="page-section">
+                    ${createPageHeader("Aura Aesthetics Blog", "Insights, News, and Education in Aesthetic Medicine")}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">${blogPostsHtml}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBlogPostPage(postId) {
+            const post = clinicData.blogPosts.find(p => p.id === postId);
+            if (!post) {
+                return `
+                    <div id="blog-post-page" class="page-section">
+                        ${createPageHeader("Post Not Found", "Please select a post from our blog.")}
+                        <div class="text-center py-16">
+                            <button data-page="blog" class="nav-link bg-teal-600 text-white px-6 py-3 rounded-md hover:bg-teal-700">Back to Blog</button>
+                        </div>
+                    </div>`;
+            }
+            const contentHtml = post.content.split('\n').map(p => `<p>${p}</p>`).join('');
+            return `
+                <div id="blog-post-page" class="page-section">
+                    ${createPageHeader(post.title)}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="mb-8">
+                                <img src="${generateImageUrl(post.imagePrompt)}" alt="${post.title}" class="w-full rounded-lg shadow-xl max-h-[450px] object-cover">
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-6">
+                                ${createIcon('user', 'w-4 h-4 mr-2 text-teal-600')} <span>By ${post.author}</span>
+                                <span class="mx-2">|</span>
+                                ${createIcon('calendar', 'w-4 h-4 mr-2 text-teal-600')} <span>${post.date}</span>
+                            </div>
+                            <article class="prose prose-lg max-w-none text-gray-700">${contentHtml}</article>
+                            <div class="mt-12 pt-8 border-t border-gray-200">
+                                <button data-page="blog" class="nav-link inline-flex items-center px-5 py-2.5 border border-teal-600 text-sm font-medium rounded-md text-teal-600 bg-transparent hover:bg-teal-50 transition duration-300">
+                                    ${createIcon('arrow-left', 'w-4 h-4 mr-2')} Back to Blog List
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderContactPage() {
+            const faqHtml = clinicData.faq.map(item => `
+                <details class="group bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <summary class="flex justify-between items-center font-medium text-teal-700 cursor-pointer text-lg group-open:text-teal-800 group-open:font-semibold">
+                        ${item.question}
+                        ${createIcon('chevron-right', 'w-5 h-5 text-teal-500 group-open:rotate-90 transition-transform')}
+                    </summary>
+                    <p class="text-gray-600 mt-3 pt-3 border-t border-teal-100">${item.answer}</p>
+                </details>
+            `).join('');
+            return `
+                <div id="contact-page" class="page-section">
+                    ${createPageHeader("Get In Touch", "We're here to answer your questions and help you start your journey.")}
+                    <div class="py-16 sm:py-24 bg-white">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="grid md:grid-cols-2 gap-12">
+                                <!-- Contact Form -->
+                                <div class="bg-teal-50 p-8 sm:p-10 rounded-lg shadow-xl">
+                                    <h2 class="text-2xl font-semibold text-teal-700 mb-6">Send Us a Message</h2>
+                                    <form id="contactForm" class="space-y-6">
+                                        <div><label for="name" class="block text-sm font-medium text-gray-700">Full Name</label><input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></div>
+                                        <div><label for="email" class="block text-sm font-medium text-gray-700">Email Address</label><input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></div>
+                                        <div><label for="phone" class="block text-sm font-medium text-gray-700">Phone Number (Optional)</label><input type="tel" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></div>
+                                        <div><label for="subject" class="block text-sm font-medium text-gray-700">Subject</label><input type="text" name="subject" id="subject" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></div>
+                                        <div><label for="message" class="block text-sm font-medium text-gray-700">Message</label><textarea name="message" id="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></textarea></div>
+                                        <div><button type="submit" id="contactFormSubmitBtn" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300">Send Message</button></div>
+                                        <div id="contactFormStatus" class="mt-4"></div>
+                                    </form>
+                                </div>
+                                <!-- Contact Information -->
+                                <div class="space-y-8">
+                                    <div>
+                                        <h2 class="text-2xl font-semibold text-teal-700 mb-4">Clinic Information</h2>
+                                        <div class="space-y-3 text-gray-700">
+                                            <p class="flex items-start">${createIcon('map-pin', 'w-6 h-6 mr-3 mt-1 text-teal-600 flex-shrink-0')}<span><strong>Address:</strong><br>${clinicData.contact.address}</span></p>
+                                            <p class="flex items-center">${createIcon('phone', 'w-5 h-5 mr-3 text-teal-600 flex-shrink-0')}<strong>Phone:</strong> <a href="tel:${clinicData.contact.phone}" class="ml-1 hover:text-teal-600">${clinicData.contact.phone}</a></p>
+                                            <p class="flex items-center">${createIcon('mail', 'w-5 h-5 mr-3 text-teal-600 flex-shrink-0')}<strong>Email:</strong> <a href="mailto:${clinicData.contact.email}" class="ml-1 hover:text-teal-600">${clinicData.contact.email}</a></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-teal-700 mb-3">Office Hours</h3>
+                                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                            <li>Monday - Friday: 9:00 AM - 5:00 PM</li>
+                                            <li>Saturday: 10:00 AM - 2:00 PM (By Appointment Only)</li>
+                                            <li>Sunday: Closed</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-8">
+                                        <h3 class="text-xl font-semibold text-teal-700 mb-3">Find Us</h3>
+                                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">
+                                            <iframe src="${clinicData.contact.mapEmbedUrl}" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Clinic Location Map"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="py-16 sm:py-24 bg-teal-50">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-3xl font-bold text-teal-700 text-center mb-12">Frequently Asked Questions</h2>
+                            <div class="space-y-6 max-w-3xl mx-auto">${faqHtml}</div>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        // --- NAVIGATION AND PAGE DISPLAY LOGIC ---
+        let currentPageId = 'home'; // Default page
+
+        function displayPage(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const mainContentContainer = document.getElementById('main-content');
+            let contentHtml = '';
+
+            // Determine the ID of the page container element and get content
+            let elementIdToFind;
+            if (pageId.startsWith('service/')) {
+                const serviceId = pageId.split('/')[1];
+                contentHtml = renderServiceDetailPage(serviceId);
+                elementIdToFind = 'service-detail-page';
+            } else if (pageId.startsWith('blog/')) {
+                const postId = pageId.split('/')[1];
+                contentHtml = renderBlogPostPage(postId);
+                elementIdToFind = 'blog-post-page';
+            } else {
+                elementIdToFind = pageId + '-page';
+                switch (pageId) {
+                    case 'home': contentHtml = renderHomePage(); break;
+                    case 'about': contentHtml = renderAboutPage(); break;
+                    case 'services': contentHtml = renderServicesPage(); break;
+                    case 'gallery': contentHtml = renderGalleryPage(); break;
+                    case 'testimonials': contentHtml = renderTestimonialsPage(); break;
+                    case 'blog': contentHtml = renderBlogListPage(); break;
+                    case 'contact': contentHtml = renderContactPage(); break;
+                    default: 
+                        contentHtml = renderHomePage(); 
+                        elementIdToFind = 'home-page'; // Fallback to home page ID
+                }
+            }
+            
+            let pageElement = document.getElementById(elementIdToFind);
+
+            if (!pageElement) { // If the page element doesn't exist, create it
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = contentHtml.trim(); 
+                
+                if (tempDiv.firstChild && tempDiv.firstChild.nodeType === Node.ELEMENT_NODE) {
+                    pageElement = tempDiv.firstChild;
+                    mainContentContainer.appendChild(pageElement);
+                } else {
+                    console.error(`Failed to create page element from contentHtml for pageId: '${pageId}'. tempDiv.firstChild is not an element or is null. contentHtml was:`, contentHtml);
+                    return; // Stop if element creation failed
+                }
+            } else { // If page element exists, update its content
+                if (pageId.startsWith('service/') || pageId.startsWith('blog/')) {
+                    // For detail pages, we re-render the content.
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = contentHtml.trim();
+                    const newContentElement = tempDiv.firstChild;
+                    if (newContentElement && newContentElement.nodeType === Node.ELEMENT_NODE) {
+                        pageElement.innerHTML = newContentElement.innerHTML; // Update innerHTML of existing element
+                    } else {
+                        console.error(`Failed to extract new innerHTML for detail page: '${pageId}'. contentHtml was:`, contentHtml);
+                        pageElement.innerHTML = ''; // Clear old content as a fallback
+                    }
+                }
+                // For non-detail pages that already exist, we don't need to re-render their content, just show them.
+            }
+
+            // Activate the current page element
+            if (pageElement && typeof pageElement.classList !== 'undefined') {
+                pageElement.classList.add('active');
+            } else {
+                console.error(`pageElement is invalid or does not have classList before adding 'active' class for pageId: '${pageId}'. pageElement:`, pageElement);
+                return; // Stop if pageElement is still not valid
+            }
+
+            currentPageId = pageId;
+            window.scrollTo(0, 0);
+            lucide.createIcons(); // Re-initialize icons after new content is added
+
+            // Re-attach event listeners for dynamically added content if necessary
+            if (pageId === 'contact') attachContactFormListener();
+            if (pageId === 'about') attachDoctorBioModalListener();
+        }
+
+        // --- EVENT LISTENERS ---
+        function setupEventListeners() {
+            // Navbar links
+            document.getElementById('navbar').addEventListener('click', function(e) {
+                if (e.target.closest('.nav-link')) {
+                    e.preventDefault();
+                    const page = e.target.closest('.nav-link').dataset.page;
+                    if (page) {
+                        displayPage(page);
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        const menuButton = document.getElementById('mobile-menu-button');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            menuButton.setAttribute('aria-expanded', 'false');
+                            menuButton.children[0].classList.remove('hidden'); // Show menu icon
+                            menuButton.children[1].classList.add('hidden');    // Hide X icon
+                        }
+                    }
+                }
+            });
+             // Footer links (delegate event for dynamically added footer)
+            document.getElementById('footer').addEventListener('click', function(e) {
+                if (e.target.closest('.nav-link')) {
+                    e.preventDefault();
+                    const page = e.target.closest('.nav-link').dataset.page;
+                    if (page) displayPage(page);
+                }
+            });
+
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                    // Toggle icons
+                    mobileMenuButton.children[0].classList.toggle('hidden'); // Menu icon
+                    mobileMenuButton.children[1].classList.toggle('hidden'); // X icon
+                });
+            }
+            
+            // Event delegation for nav-links within dynamic content (main content area)
+            document.getElementById('main-content').addEventListener('click', function(e) {
+                const navLink = e.target.closest('.nav-link');
+                if (navLink && navLink.dataset.page) {
+                    e.preventDefault();
+                    displayPage(navLink.dataset.page);
+                }
+            });
+        }
+        
+        function attachContactFormListener() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // Remove existing listener to prevent duplicates if page is re-rendered
+                const newForm = contactForm.cloneNode(true);
+                contactForm.parentNode.replaceChild(newForm, contactForm);
+
+                newForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const submitBtn = document.getElementById('contactFormSubmitBtn');
+                    const statusDiv = document.getElementById('contactFormStatus');
+                    statusDiv.innerHTML = '';
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `Sending... ${createIcon('loader-2', 'animate-spin w-5 h-5 inline-block ml-2')}`;
+                    lucide.createIcons();
+
+
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    if (Math.random() > 0.2) { // Simulate success
+                        statusDiv.innerHTML = `<div class="p-3 rounded-md bg-green-50 border border-green-300 text-green-700 flex items-center">${createIcon('check-circle', 'w-5 h-5 mr-2')} Message sent successfully! We'll be in touch soon.</div>`;
+                        newForm.reset();
+                    } else { // Simulate error
+                        statusDiv.innerHTML = `<div class="p-3 rounded-md bg-red-50 border border-red-300 text-red-700 flex items-center">${createIcon('x-circle', 'w-5 h-5 mr-2')} Oops! Something went wrong. Please try again.</div>`;
+                    }
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    lucide.createIcons(); 
+                });
+            }
+        }
+
+        function attachDoctorBioModalListener() {
+            const learnMoreBtn = document.getElementById('learnMoreDoctorBtn');
+            const modalOverlay = document.getElementById('doctorBioModal');
+            const modalContentEl = document.getElementById('doctorBioModalContent');
+            const closeModalBtn = document.getElementById('closeDoctorBioModal');
+
+            if (learnMoreBtn && modalOverlay && closeModalBtn && modalContentEl) {
+                 // To prevent multiple listeners if about page is re-visited (though it's not re-rendered fully here)
+                const newLearnMoreBtn = learnMoreBtn.cloneNode(true);
+                learnMoreBtn.parentNode.replaceChild(newLearnMoreBtn, learnMoreBtn);
+
+                newLearnMoreBtn.addEventListener('click', () => {
+                    const doctor = clinicData.doctors[0];
+                    modalContentEl.innerHTML = `
+                        <h3 class="text-xl font-bold text-teal-700 mb-4">${doctor.name} - Full Bio</h3>
+                        <p class="text-gray-700 mb-2">${doctor.specialty}</p>
+                        <p class="text-gray-600 text-sm mb-4">${doctor.bio}</p>
+                        <h5 class="font-semibold text-teal-700 mt-3 mb-1">Education:</h5>
+                        <ul class="list-disc pl-5 text-sm text-gray-600 mb-3">
+                            ${doctor.education.map(edu => `<li>${edu}</li>`).join('')}
+                        </ul>
+                        <h5 class="font-semibold text-teal-700 mt-3 mb-1">Certifications:</h5>
+                        <ul class="list-disc pl-5 text-sm text-gray-600 mb-4">
+                            ${doctor.certifications.map(cert => `<li>${cert}</li>`).join('')}
+                        </ul>
+                    `;
+                    modalOverlay.classList.add('active');
+                });
+
+                // Ensure close listeners are only attached once or are idempotent
+                if (!closeModalBtn.dataset.listenerAttached) {
+                    closeModalBtn.addEventListener('click', () => {
+                        modalOverlay.classList.remove('active');
+                    });
+                    modalOverlay.addEventListener('click', (event) => {
+                        if (event.target === modalOverlay) {
+                             modalOverlay.classList.remove('active');
+                        }
+                    });
+                    closeModalBtn.dataset.listenerAttached = 'true';
+                }
+            }
+        }
+
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNavbar();
+            renderFooter();
+            displayPage(currentPageId); // Display initial page (home)
+            setupEventListeners();
+            lucide.createIcons(); // Initial icon rendering
+        });
+
+    </script>
+</body>
+</html>
